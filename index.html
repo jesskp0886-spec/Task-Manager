@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow — Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="masthead">
+        <div class="masthead-left">
+            <h1>TaskFlow</h1>
+            <span class="masthead-tag">Task Manager</span>
+        </div>
+        <div class="masthead-meta">
+            <div id="todayDate"></div>
+            <div id="openCount">0 tasks open</div>
+        </div>
+    </header>
+
+    <main>
+        <!-- FORM -->
+        <section class="card-form">
+            <h2 id="formHeading">New Task</h2>
+            <p class="form-sub" id="formSub">Create a task and assign it a priority.</p>
+
+            <form id="taskForm" novalidate>
+                <input type="hidden" id="taskId">
+
+                <div class="field">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="e.g. Draft quarterly review" autocomplete="off">
+                    <div class="field-error" id="titleError">Title is required.</div>
+                </div>
+
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Add detail (optional)"></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="dueDate">Due date</label>
+                    <input type="date" id="dueDate">
+                    <div class="field-error" id="dueDateError">Due date is required.</div>
+                </div>
+
+                <div class="field">
+                    <label>Priority</label>
+                    <div class="priority-picker">
+                        <input type="radio" name="priority" id="p-low" value="low">
+                        <label for="p-low">Low</label>
+                        <input type="radio" name="priority" id="p-medium" value="medium" checked>
+                        <label for="p-medium">Medium</label>
+                        <input type="radio" name="priority" id="p-high" value="high">
+                        <label for="p-high">High</label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="submitBtn">Add task</button>
+                    <button type="button" class="btn-ghost" id="cancelEditBtn" style="display:none;">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- LIST -->
+        <section>
+            <div class="toolbar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search title or description…">
+                </div>
+                <div class="chip-group" id="filterChips">
+                    <button class="chip active" data-filter="all">All</button>
+                    <button class="chip" data-filter="low">Low</button>
+                    <button class="chip" data-filter="medium">Medium</button>
+                    <button class="chip" data-filter="high">High</button>
+                </div>
+            </div>
+
+            <p class="count-line" id="countLine">0 entries</p>
+
+            <div id="taskList"></div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
